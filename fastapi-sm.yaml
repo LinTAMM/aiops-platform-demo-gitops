@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: fastapi-demo
+  namespace: aiops-platform-demo
+spec:
+  namespaceSelector:
+    matchNames:
+      - aiops-platform-demo
+  selector:
+    matchLabels:
+      app: fastapi-demo
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+      scheme: http

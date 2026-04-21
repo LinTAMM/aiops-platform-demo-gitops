@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fastapi-demo-canary
+  namespace: aiops-platform-demo
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "20"  
+      # nginx.ingress.kubernetes.io/canary-by-header: "Canary"
+      # nginx.ingress.kubernetes.io/canary-by-header-value: "always"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: fastapi-demo.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: fastapi-demo-canary
+            port:
+              number: 8000

@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: 192.168.94.150/aiops-platform-demo/fastapi-demo
+  tag: "v2"
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: harbor-auth
+
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+
+ingress:
+  enabled: false
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+probes:
+  readinessPath: /healthz
+  livenessPath: /healthz
