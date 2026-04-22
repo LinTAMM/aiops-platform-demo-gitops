@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: 192.168.94.150/aiops-platform-demo/fastapi-demo
-  tag: "v3"
+  tag: "v4"
   pullPolicy: Always
 
 imagePullSecrets:
